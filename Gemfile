@@ -1,8 +1,11 @@
 source 'https://www.rubygems.org'
 
+
+gem 'sinatra'
+gem 'activerecord', :require => 'active_record' # É um framework que implementa o acesso ao banco de dados de forma transparente ao usuário
+gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake' #gradle =P
-gem 'sinatra', '~> 1.4', '>= 1.4.7'
-gem 'haml'
+gem 'require_all'
 gem 'sqlite3'
 
 group :production do
