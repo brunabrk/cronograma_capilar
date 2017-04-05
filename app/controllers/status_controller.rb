@@ -6,6 +6,6 @@ class StatusController < Sinatra::Base
     @status = Status.new
     @status.message = "testing"
     @status.save
-    erb :"status"
+    erb :status
   end
 end

@@ -1,3 +1,9 @@
+require_relative '../../config/environments'
+
+class ApplicationController < Sinatra::Base
+
+
+end
 # $:.unshift(File.expand_path('../../lib', __FILE__))
 #
 # require 'sinatra/base'

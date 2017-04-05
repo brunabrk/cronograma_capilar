@@ -16,19 +16,34 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'rspec'
-require 'rack/test'
-
 ENV['RACK_ENV'] = 'test'
 
-require_relative "../config/environments"
+require 'rspec'
+require 'rack/test'
+require 'factory_girl'
 
+require_relative "../config/environments"
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  # if you want to build(:user) instead of Factory.build(:user)
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryGirl.find_definitions
+  end
+
   config.include Rack::Test::Methods
+
+  def app
+    Sinatra::Application
+  end
+
+  config.before do
+    ActiveRecord::Base.subclasses.each(&:delete_all)
+  end
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`

@@ -1,3 +1,3 @@
 require './config/environments'
 
-run StatusController
+run Sinatra::Application
